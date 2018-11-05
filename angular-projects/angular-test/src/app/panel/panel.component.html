@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-sm-6">
+        <app-progress></app-progress>
+      </div>
+      <div class="col-sm-6">
+        <div class="d-flex flex-row-reverse bd-highlight">
+        	<app-attempts></app-attempts>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <h6>{{instruction}}</h6>
+        <div class="form-group">
+          <label for="text-translated">{{frases[2].fraseEg }}</label>
+          <textarea class="form-control" id="text-translated" rows="3"></textarea>
+        </div>
+		<div class="d-flex flex-row-reverse bd-highlight">
+			<button type="submit" class="btn btn-primary">Verify</button>
+		</div>
+	  </div>
+    </div>
+  </div>
+</div>
