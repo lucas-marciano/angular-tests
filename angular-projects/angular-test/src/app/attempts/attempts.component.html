@@ -1,3 +1,2 @@
-<img [src]="emptyImage">
-<img [src]="fullImage">
-<img [src]="fullImage">
+
+<img *ngFor="let hearth of hearths" [src]="hearth.showHearth()" />

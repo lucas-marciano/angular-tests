@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Frase } from '../shared/Frase.model';
-import { FRASES } from './Frase-mock';
+import { Frase } from '../shared/frase.model';
+import { FRASES } from './frase-mock';
 
 @Component({
   selector: 'app-panel',
@@ -9,17 +9,18 @@ import { FRASES } from './Frase-mock';
 })
 export class PanelComponent implements OnInit {
 
-  public frases: Frase[] = FRASES;
-  public instruction: string = 'Translate the frase';
-  public response: string = '';
-  public attempt: number = 0;
-  public frase: Frase;
-  public progress: number = 0;
-  private progressPorcent: number = 0;
+  public frases: Frase[] = FRASES
+  public instruction: string = 'Translate the frase'
+  public response: string = ''
+  public attempt: number = 0
+  public frase: Frase
+  public progress: number = 0
+  public attempts: number = 3
+  private progressPorcent: number = 0
 
   constructor() {
-	this.updateActualFrase();
-	this.progressPorcent = 100 / this.frases.length;
+	  this.updateActualFrase();
+	  this.progressPorcent = 100 / this.frases.length;
   }
 
   ngOnInit() {
@@ -35,6 +36,9 @@ export class PanelComponent implements OnInit {
       this.showResponse('Greate!');
     } else {
       this.showResponse('Wrong translate!');
+      this.attempts--
+      if(this.attempts === -1)
+        this.showResponse('You lose!')
     }
     this.response = '';
   }

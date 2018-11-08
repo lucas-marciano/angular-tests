@@ -1,16 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnChanges Input } from '@angular/core'
+import { Hearth } from '../shared/hearth.model'
 
 @Component({
   selector: 'app-attempts',
   templateUrl: './attempts.component.html',
   styleUrls: ['./attempts.component.css']
 })
-export class AttemptsComponent implements OnInit {
+export class AttemptsComponent implements OnInit, OnChanges {
+  @Input() public attempts
 
-  public emptyImage = '/assets/coracao_vazio.png';
-  public fullImage = '/assets/coracao_cheio.png';
+  public hearths: Array<Hearth> = [
+    new Hearth(true),
+    new Hearth(true),
+    new Hearth(true)
+  ]
 
-  constructor() { }
+  ngOnChanges(){
+    if(this.attempts !== this.hearths.length){
+      let indice = (this.hearths.length - this.attempts) - 1
+      this.hearths[indice].fullHearth = false
+    }
+  }
 
   ngOnInit() {
   }
