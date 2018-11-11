@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Frase } from '../shared/frase.model';
 import { FRASES } from './frase-mock';
 
@@ -17,6 +17,7 @@ export class PanelComponent implements OnInit {
   public progress: number = 0
   public attempts: number = 3
   private progressPorcent: number = 0
+  @Output() public endGame: EventEmitter<string> = new EventEmitter()
 
   constructor() {
 	  this.updateActualFrase();
@@ -33,12 +34,16 @@ export class PanelComponent implements OnInit {
   public checkResponse(): void {
     if (this.frase.frasePtBr.toUpperCase() === this.response.toUpperCase()) {
       this.updateProgressBar();
-      this.showResponse('Greate!');
+      if(this.checkEndGame()){
+        this.endGame.emit('victory')      
+      }
+      this.updateActualFrase();
     } else {
-      this.showResponse('Wrong translate!');
+      // this.showResponse('Wrong translate!');
       this.attempts--
-      if(this.attempts === -1)
-        this.showResponse('You lose!')
+      if(this.attempts === -1){
+        this.endGame.emit('lose') 
+      }
     }
     this.response = '';
   }
@@ -46,13 +51,16 @@ export class PanelComponent implements OnInit {
   private updateProgressBar(): void {
     this.attempt++;
     this.progress = this.progress + this.progressPorcent;
-    if (this.frases.length > this.attempt) {
-      this.updateActualFrase();
-    }
+  }
+
+  private checkEndGame(): boolean{
+    return this.attempt === this.frases.length
   }
 
   private updateActualFrase(): void {
-    this.frase = this.frases[this.attempt];
+    if (this.frases.length > this.attempt) {
+      this.frase = this.frases[this.attempt];
+    }
   }
 
   private showResponse(message: string): void {

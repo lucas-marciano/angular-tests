@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges Input } from '@angular/core'
+import { Component, OnInit, OnChanges, Input } from '@angular/core'
 import { Hearth } from '../shared/hearth.model'
 
 @Component({

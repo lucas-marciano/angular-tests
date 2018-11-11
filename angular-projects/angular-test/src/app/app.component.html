@@ -1,2 +1,18 @@
 <app-header></app-header>
-<app-panel></app-panel>
+<div *ngIf="goOnGame; else endLoseMessage"> 
+<app-panel (endGame)="endGame($event)"></app-panel>
+</div>
+
+<ng-template #endLoseMessage>
+	<div *ngIf="winGame === 'lose'; else endWinMessage" class="container">
+		<h2 style="color: red; margin-top: 30px">You lose!</h2>
+		<button class="btn btn-primary" (click)="resetGame()">Try again</button>
+	</div>
+</ng-template>
+
+<ng-template #endWinMessage>
+	<div class="container">
+		<h2 style="color: green; margin-top: 30px">You win!</h2>
+		<button class="btn btn-primary" (click)="resetGame()">Try again</button>
+	</div>
+</ng-template>
