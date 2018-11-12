@@ -28,3 +28,6 @@ build/Release
 node_modules
 typescript/dist
 typescript/tsconfig.json
+angular-projects/angular-test/.angulardoc.json
+angular-projects/angular-test/package.json
+angular-projects/angular-test/package-lock.json
