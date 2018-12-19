@@ -12,6 +12,7 @@ import { PanelComponent } from './panel/panel.component';
 import { FooterComponent } from './footer/footer.component';
 import { FunComponent } from './fun/fun.component';
 import { RestaurantComponent } from './restaurant/restaurant.component';
+import { OffertComponent } from './offert/offert.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { RestaurantComponent } from './restaurant/restaurant.component';
     PanelComponent,
     FooterComponent,
     FunComponent,
-    RestaurantComponent
+    RestaurantComponent,
+    OffertComponent
   ],
   imports: [
     BrowserModule,

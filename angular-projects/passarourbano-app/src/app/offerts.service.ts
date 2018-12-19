@@ -10,7 +10,13 @@ export class OffertsService{
     }
 
     public getOfferts(): Promise<Array<Offert>>{
-       return this.http.get('http://localhost:3000/ofertas')
+       return this.http.get('http://localhost:3000/ofertas?detaque=true')
+                .toPromise()
+                    .then((response: any) => response.json())
+    }
+
+    public getOffertsByCategory(category: string):  Promise<Array<Offert>>{
+        return this.http.get(`http://localhost:3000/ofertas?categoria=${category}`)
                 .toPromise()
                     .then((response: any) => response.json())
     }
